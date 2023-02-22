@@ -61,10 +61,6 @@ export class CardService {
   }
 
   getBasketSum() {
-    let sum = 0;
-    for (let item of this.basket.cardItems) {
-      sum = sum + item.price;
-    }
-    return sum;
+    return this.basket.cardItems.reduce((sum, current) => sum + current.price, 0)
   }
 }
