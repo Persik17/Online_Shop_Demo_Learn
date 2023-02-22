@@ -16,7 +16,7 @@ export class PropertyShopItemComponent {
   constructor(private cardService: CardService) {}
 
   onAddedToCard(value: Property) {
-    this.cardService.addToCard(this.property);
+    this.newItemEvent.emit(value);
     console.log(this.property);
   }
 }

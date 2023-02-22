@@ -63,4 +63,8 @@ export class CardService {
   getBasketSum() {
     return this.basket.cardItems.reduce((sum, current) => sum + current.price, 0)
   }
+
+  getBasketItems() {
+    return this.basket.cardItems;
+  }
 }

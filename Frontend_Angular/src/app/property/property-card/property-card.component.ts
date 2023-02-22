@@ -17,9 +17,14 @@ export class PropertyCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSum();
+    this.getBasketItems();
   }
 
   getSum() {
     this.sum = this.cardService.getBasketSum();
+  }
+
+  getBasketItems() {
+    this.cardProperties = this.cardService.getBasketItems();
   }
 }
