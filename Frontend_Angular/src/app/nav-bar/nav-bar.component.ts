@@ -7,7 +7,7 @@ import { CartService } from '../service/cart.service';
   styleUrls: ['./nav-bar.component.css'],
 })
 export class NavBarComponent implements OnInit {
-  countProduct: number;
+  countProduct: number = 0;
 
   constructor(private cartService: CartService) {}
 

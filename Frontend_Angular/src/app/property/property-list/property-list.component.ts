@@ -22,8 +22,9 @@ export class PropertyListComponent {
       .subscribe((data) => (this.properties = data));
   }
 
-  addToCart(): void {
-    this.cartService.addToCard(null);
+  addToCart(prop: Property): void {
+    //this.cartService.addToCard(prop);
+    console.log(prop);
   }
 
   ngOnInit(): void {

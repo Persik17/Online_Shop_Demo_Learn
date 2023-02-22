@@ -10,11 +10,10 @@ import { Property } from '../../model/Property';
   styleUrls: ['./property-shop-item.component.css'],
 })
 export class PropertyShopItemComponent {
-  @Output() newItemEvent = new EventEmitter<Property>();
+  @Output() onAddedToCartEvent = new EventEmitter<Property>();
   @Input() property: Property;
 
-  onAddedToCart(value: Property) {
-    this.newItemEvent.emit(value);
-    console.log(this.property);
+  onAddedToCart() {
+    this.onAddedToCartEvent.emit(this.property);
   }
 }

@@ -6,7 +6,7 @@
     <div class="mb-lg-3 m-5">
       <ul>
         <li class="list-group-item m-3" *ngFor="let property of properties">
-          <app-property-shop-item
+          <app-property-shop-item (onAddedToCartEvent)="addToCart($event)"
             [property]="property"
           ></app-property-shop-item>
         </li>
