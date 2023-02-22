@@ -11,7 +11,7 @@ import { HttpService } from '../service/http.service';
 export class ProductService {
   constructor(private http: HttpService) {}
 
-  getAllProducts(): Observable<Property[]> {
-    return this.http.getAllProducts();
+  getAllProps(): Observable<Property[]> {
+    return this.http.getAllProperties();
   }
 }

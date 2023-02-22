@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { Property } from '../model/Property';
-import { Basket } from '../model/Basket';
+import { Cart } from '../model/Cart';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CardService {
-  basket: Basket = {
-    cardItems: [
+export class CartService {
+  cart: Cart = {
+    cartItems: [
       {
         id: 1,
         title: '123',
@@ -53,18 +53,18 @@ export class CardService {
   constructor() {}
 
   addToCard(prop: Property): void {
-    this.basket.cardItems.push(prop);
+    this.cart.cartItems.push(prop);
   }
 
-  getBasketCount() {
-    return this.basket.cardItems.length;
+  getCartCount() {
+    return this.cart.cartItems.length;
   }
 
-  getBasketSum() {
-    return this.basket.cardItems.reduce((sum, current) => sum + current.price, 0)
+  getCartSum() {
+    return this.cart.cartItems.reduce((sum, current) => sum + current.price, 0)
   }
 
-  getBasketItems() {
-    return this.basket.cardItems;
+  getCartItems() {
+    return this.cart.cartItems;
   }
 }

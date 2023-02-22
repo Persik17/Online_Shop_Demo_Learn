@@ -14,7 +14,7 @@ export class HttpService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getAllProducts() {
+  getAllProperties() {
     return this.httpClient.get<Property[]>(this.url).pipe(
       tap((_) => console.log('fetched props')),
       catchError(this.handleError<Property[]>('getAllProducts', []))

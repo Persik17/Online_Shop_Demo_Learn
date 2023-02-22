@@ -1,17 +1,17 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { PropertyCardComponent } from './property/property-card/property-card.component';
+import { PropertyCartComponent } from './property/property-cart/property-cart.component';
 import { PropertyListComponent } from './property/property-list/property-list.component';
 
 const routes: Routes = [
-  { path: "", redirectTo: "property-list", pathMatch: "full" },
+  { path: '', redirectTo: 'property-list', pathMatch: 'full' },
   {
-    path: "property-card",
-    component: PropertyCardComponent,
+    path: 'property-cart',
+    component: PropertyCartComponent,
   },
   {
-    path: "property-list",
+    path: 'property-list',
     component: PropertyListComponent,
   },
 ];

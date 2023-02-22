@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CardService } from '../service/card.service';
+import { CartService } from '../service/cart.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,15 +9,15 @@ import { CardService } from '../service/card.service';
 export class NavBarComponent implements OnInit {
   countProduct: number;
 
-  constructor(private cardService: CardService) {}
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.getCountInBasket();
+    this.getCountInCart();
   }
 
-  getCountInBasket(): void {
-    this.countProduct = this.cardService.getBasketCount();
-    console.log("Count in basket");
+  getCountInCart(): void {
+    this.countProduct = this.cartService.getCartCount();
+    console.log("Count in cart");
     console.log(this.countProduct);
   }
 }

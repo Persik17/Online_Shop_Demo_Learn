@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 import { PropertyShopItemComponent } from './property/property-shop-item/property-shop-item.component';
-import { PropertyCardComponent } from './property/property-card/property-card.component';
+import { PropertyCartComponent } from './property/property-cart/property-cart.component';
 import { PropertyListComponent } from './property/property-list/property-list.component';
 
 @NgModule({
@@ -17,7 +17,7 @@ import { PropertyListComponent } from './property/property-list/property-list.co
     AppComponent,
     NavBarComponent,
     PropertyListComponent,
-    PropertyCardComponent,
+    PropertyCartComponent,
     PropertyShopItemComponent,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],

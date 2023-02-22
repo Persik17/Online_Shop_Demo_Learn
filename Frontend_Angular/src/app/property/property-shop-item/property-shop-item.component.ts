@@ -1,6 +1,6 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 
-import { CardService } from 'src/app/service/card.service';
+import { CartService } from 'src/app/service/cart.service';
 
 import { Property } from '../../model/Property';
 
@@ -13,9 +13,7 @@ export class PropertyShopItemComponent {
   @Output() newItemEvent = new EventEmitter<Property>();
   @Input() property: Property;
 
-  constructor(private cardService: CardService) {}
-
-  onAddedToCard(value: Property) {
+  onAddedToCart(value: Property) {
     this.newItemEvent.emit(value);
     console.log(this.property);
   }

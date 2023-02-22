@@ -1,29 +1,32 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 import { ProductService } from 'src/app/service/product.service';
-import { CardService } from 'src/app/service/card.service';
+import { CartService } from 'src/app/service/cart.service';
 
 import { Property } from '../../model/Property';
-import { Basket } from '../../model/Basket';
 
 @Component({
   selector: 'app-property-list',
   templateUrl: './property-list.component.html',
   styleUrls: ['./property-list.component.css'],
 })
-export class PropertyListComponent implements OnInit {
+export class PropertyListComponent {
   properties: Property[];
   sum: number = 0;
 
-  constructor(private productService: ProductService, private cardService: CardService) {}
+  constructor(private productService: ProductService, private cartService: CartService) {}
 
-  getProducts(): void {
+  getShopItems(): void {
     this.productService
-      .getAllProducts()
+      .getAllProps()
       .subscribe((data) => (this.properties = data));
   }
 
+  addToCart(): void {
+    this.cartService.addToCard(null);
+  }
+
   ngOnInit(): void {
-    this.getProducts();
+    this.getShopItems();
   }
 }

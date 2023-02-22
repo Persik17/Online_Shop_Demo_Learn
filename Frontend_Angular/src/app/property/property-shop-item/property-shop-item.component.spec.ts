@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PropertyCardComponent } from './property-shop-item.component';
+import { PropertyShopItemComponent } from './property-shop-item.component';
 
 describe('PropertyCardComponent', () => {
-  let component: PropertyCardComponent;
-  let fixture: ComponentFixture<PropertyCardComponent>;
+  let component: PropertyShopItemComponent;
+  let fixture: ComponentFixture<PropertyShopItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PropertyCardComponent ]
+      declarations: [ PropertyShopItemComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PropertyCardComponent);
+    fixture = TestBed.createComponent(PropertyShopItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
