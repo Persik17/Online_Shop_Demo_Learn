@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
-import { ProductService } from 'src/app/service/product.service';
+import { CardService } from 'src/app/service/card.service';
 
 import { Property } from '../../model/Property';
 
@@ -11,9 +11,9 @@ import { Property } from '../../model/Property';
   styleUrls: ['./property-card.component.css']
 })
 export class PropertyCardComponent implements OnInit {
-  properties: Property[];
+  cardProperties: Property[];
 
-  constructor(private productService: ProductService) {}
+  constructor(private cardService: CardService) {}
 
   ngOnInit(): void {
   }

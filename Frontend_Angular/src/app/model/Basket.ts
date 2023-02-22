@@ -1,5 +1,7 @@
 import { Property } from "./Property";
 
-export interface basket {
+export interface Basket {
   cardItems : Property[];
+
+
 }

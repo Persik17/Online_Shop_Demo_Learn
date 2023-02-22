@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
+
+import { CardService } from 'src/app/service/card.service';
 
 import { Property } from '../../model/Property';
 
@@ -8,10 +10,13 @@ import { Property } from '../../model/Property';
   styleUrls: ['./property-shop-item.component.css'],
 })
 export class PropertyShopItemComponent {
+  @Output() newItemEvent = new EventEmitter<Property>();
   @Input() property: Property;
 
-  onAddedToCard(addedProperty: Property): void {
-    this.property = addedProperty;
+  constructor(private cardService: CardService) {}
+
+  onAddedToCard(value: Property) {
+    this.cardService.addToCard(this.property);
     console.log(this.property);
   }
 }

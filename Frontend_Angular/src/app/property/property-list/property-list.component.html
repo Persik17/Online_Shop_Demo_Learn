@@ -1,19 +1,16 @@
-
-<!-- <div class="card" style="width: 10rem;">
-  <p>Total Price:  $</p>
-</div> -->
 <div class="row">
-  <div class="card shadow-lg ">
-    <div style="position: absolute; right:100px;">
+  <div class="card shadow-lg">
+    <div style="position: absolute; right: 100px">
       <p>List of items</p>
     </div>
     <div class="mb-lg-3 m-5">
       <ul>
         <li class="list-group-item m-3" *ngFor="let property of properties">
-          <app-property-shop-item [property]="property"></app-property-shop-item>
+          <app-property-shop-item
+            [property]="property"
+          ></app-property-shop-item>
         </li>
-    </ul>
-
+      </ul>
     </div>
   </div>
 </div>
