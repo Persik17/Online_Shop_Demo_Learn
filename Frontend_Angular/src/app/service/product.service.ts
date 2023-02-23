@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { Property } from '../model/Property';
 import { HttpService } from '../service/http.service';

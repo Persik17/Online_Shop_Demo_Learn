@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
-
 import { Property } from '../model/Property';
 import { Cart } from '../model/Cart';
 
@@ -9,7 +7,9 @@ import { Cart } from '../model/Cart';
   providedIn: 'root',
 })
 export class CartService {
-  cart: Cart;
+  private cart: Cart = {
+    cartItems: [],
+  };
 
   constructor() {}
 
@@ -22,7 +22,11 @@ export class CartService {
   }
 
   getCartSum() {
-    return this.cart.cartItems.reduce((sum, current) => sum + current.price, 0)
+    const sum: number = this.cart.cartItems.reduce(
+      (sum, current) => sum + current.price,
+      0
+    );
+    return sum == null ? 0 : sum;
   }
 
   getCartItems() {

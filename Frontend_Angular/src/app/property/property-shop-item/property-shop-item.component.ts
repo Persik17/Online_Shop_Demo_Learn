@@ -1,7 +1,5 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 
-import { CartService } from 'src/app/service/cart.service';
-
 import { Property } from '../../model/Property';
 
 @Component({

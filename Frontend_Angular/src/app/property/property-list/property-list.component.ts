@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ProductService } from 'src/app/service/product.service';
 import { CartService } from 'src/app/service/cart.service';
@@ -14,7 +14,10 @@ export class PropertyListComponent {
   properties: Property[];
   sum: number = 0;
 
-  constructor(private productService: ProductService, private cartService: CartService) {}
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService
+  ) {}
 
   getShopItems(): void {
     this.productService
@@ -23,7 +26,7 @@ export class PropertyListComponent {
   }
 
   addToCart(prop: Property): void {
-    //this.cartService.addToCard(prop);
+    this.cartService.addToCard(prop);
     console.log(prop);
   }
 

@@ -1,5 +1,5 @@
-import { Property } from "./Property";
+import { Property } from './Property';
 
 export interface Cart {
-  cartItems : Property[];
+  cartItems: Property[];
 }

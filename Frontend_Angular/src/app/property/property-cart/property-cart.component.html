@@ -1,5 +1,5 @@
-<div class="card" style="width: 10rem;">
-  <p>Total Price: {{sum}} $</p>
+<div class="card" style="width: 10rem">
+  <p>Total Price: {{ sum }}$</p>
 </div>
 <div class="row">
   <div class="card shadow-lg">
@@ -9,7 +9,9 @@
     <div class="mb-lg-3 m-5">
       <ul>
         <li class="list-group-item m-3" *ngFor="let property of cartProperties">
-          <app-property-shop-item [property]="property"></app-property-shop-item>
+          <app-property-cart-item
+            [property]="property"
+          ></app-property-cart-item>
         </li>
       </ul>
     </div>
