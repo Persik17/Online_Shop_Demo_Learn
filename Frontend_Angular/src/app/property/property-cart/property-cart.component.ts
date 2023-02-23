@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Cart } from 'src/app/model/Cart';
 
 import { CartService } from 'src/app/service/cart.service';
 
@@ -10,7 +11,7 @@ import { Property } from '../../model/Property';
   styleUrls: ['./property-cart.component.css'],
 })
 export class PropertyCartComponent implements OnInit {
-  cartProperties: Property[];
+  cartProperties: Cart[];
   sum: number = 0;
 
   constructor(private cartService: CartService) {}

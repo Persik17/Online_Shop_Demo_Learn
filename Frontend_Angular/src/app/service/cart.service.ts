@@ -7,29 +7,43 @@ import { Cart } from '../model/Cart';
   providedIn: 'root',
 })
 export class CartService {
-  private cart: Cart = {
-    cartItems: [],
-  };
+  private cart: Cart[] = [];
 
   constructor() {}
 
   addToCard(prop: Property): void {
-    this.cart.cartItems.push(prop);
+    let propCart: Cart = {
+      item: prop,
+      count: 1,
+    };
+
+    //checking on exist item in cart else just +1 to count
+    if (this.cart.find((p) => p.item.id == propCart.item.id) == null) {
+      this.cart.push(propCart);
+      console.log(propCart);
+    } else {
+      this.cart.find((p) => p.item.id == propCart.item.id).count++;
+    }
   }
 
   getCartCount() {
-    return this.cart.cartItems.length;
+    const sum: number = this.cart.reduce(
+      (sum, current) => sum + current.count,
+      0
+    );
+    return sum == null ? 0 : sum;
   }
 
   getCartSum() {
-    const sum: number = this.cart.cartItems.reduce(
-      (sum, current) => sum + current.price,
+    const sum: number = this.cart.reduce(
+      (sum, current) => sum + current.item.price * current.count,
       0
     );
     return sum == null ? 0 : sum;
   }
 
   getCartItems() {
-    return this.cart.cartItems;
+    console.log(this.cart);
+    return this.cart;
   }
 }

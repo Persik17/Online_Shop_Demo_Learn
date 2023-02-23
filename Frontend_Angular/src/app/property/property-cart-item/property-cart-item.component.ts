@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Property } from '../../model/Property';
+import { Cart } from '../../model/Cart';
 
 @Component({
   selector: 'app-property-cart-item',
@@ -8,5 +8,5 @@ import { Property } from '../../model/Property';
   styleUrls: ['./property-cart-item.component.css'],
 })
 export class PropertyCartItemComponent {
-  @Input() property: Property;
+  @Input() cartProp: Cart;
 }

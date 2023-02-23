@@ -1,5 +1,6 @@
 import { Property } from './Property';
 
 export interface Cart {
-  cartItems: Property[];
+  item: Property;
+  count: number;
 }

@@ -25,7 +25,9 @@
       <div>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active">Items in cart - {{ countProduct }} </a>
+            <a class="nav-link active"
+              >Items in cart - {{ cartService.getCartCount() }}
+            </a>
           </li>
         </ul>
       </div>

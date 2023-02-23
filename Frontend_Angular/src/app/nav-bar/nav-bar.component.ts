@@ -7,15 +7,7 @@ import { CartService } from '../service/cart.service';
   styleUrls: ['./nav-bar.component.css'],
 })
 export class NavBarComponent implements OnInit {
-  countProduct: number = 0;
+  constructor(public cartService: CartService) {}
 
-  constructor(private cartService: CartService) {}
-
-  ngOnInit(): void {
-    this.getCountInCart();
-  }
-
-  getCountInCart(): void {
-    this.countProduct = this.cartService.getCartCount();
-  }
+  ngOnInit(): void {}
 }

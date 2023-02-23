@@ -12,7 +12,6 @@ import { Property } from '../../model/Property';
 })
 export class PropertyListComponent {
   properties: Property[];
-  sum: number = 0;
 
   constructor(
     private productService: ProductService,
