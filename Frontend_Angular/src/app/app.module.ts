@@ -13,6 +13,8 @@ import { PropertyCartComponent } from './property/property-cart/property-cart.co
 import { PropertyListComponent } from './property/property-list/property-list.component';
 import { PropertyCartItemComponent } from './property/property-cart-item/property-cart-item.component';
 
+import { CountCartPipe } from './pipe/count-cart.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +23,7 @@ import { PropertyCartItemComponent } from './property/property-cart-item/propert
     PropertyCartComponent,
     PropertyShopItemComponent,
     PropertyCartItemComponent,
+    CountCartPipe,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [],
