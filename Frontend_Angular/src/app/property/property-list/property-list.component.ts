@@ -4,6 +4,8 @@ import { ProductService } from 'src/app/service/product.service';
 import { CartService } from 'src/app/service/cart.service';
 
 import { Property } from '../../model/Property';
+import { Cart } from 'src/app/model/Cart';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-property-list',

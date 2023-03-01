@@ -3,50 +3,64 @@ import { Injectable } from '@angular/core';
 import { Property } from '../model/Property';
 import { Cart } from '../model/Cart';
 
-import { BehaviorSubject, find, map, pipe, Observable, Observer } from 'rxjs';
+import { BehaviorSubject, map, Observable, Subject, of, from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  private cart: Cart[] = [];
-  private cartItemsCount = new BehaviorSubject(null);
+  cart$: BehaviorSubject<Cart[]> = new BehaviorSubject<Cart[]>([]);
+  cart: Observable<Cart[]> = this.cart$.asObservable();
+
+  count$ = new BehaviorSubject(0);
+  count: number = 0;
+
+  total$ = new Object(0);
+  total: number = 0;
 
   constructor() {}
 
-  addToCart(prop: Property): void {
+  addToCart(prop: Property) {
     let propCart: Cart = {
       item: prop,
       count: 1,
     };
 
     //checking on exist item in cart else just +1 to count
-    if (this.cart.find((p) => p.item.id == propCart.item.id) == null) {
-      this.cart.push(propCart);
-      console.log(propCart);
+    if (this.cart$.value.find((p) => p.item.id == prop.id) == null) {
+      this.cart$.value.push(propCart);
     } else {
-      this.cart.find((p) => p.item.id == propCart.item.id).count++;
+      this.cart$.value.find((p) => p.item.id == prop.id).count++;
     }
+
+    this.count++;
+    this.count$.next(this.count);
   }
 
   getCartCount() {
-    return this.cartItemsCount.pipe(
+    let sum: number;
+    return this.cart$.asObservable().pipe(
       map((cart) => {
-        cart.reduce((sum: number, current: Cart) => sum + current.count, 0);
+        cart.reduce((sum, current) => sum + current.count, 0);
+        return sum == null ? 0 : sum;
       })
     );
   }
 
   getCartSum() {
-    const sum: number = this.cart.reduce(
-      (sum, current) => sum + current.item.price * current.count,
-      0
+    let sum: number;
+    return this.cart$.asObservable().pipe(
+      map((cart) => {
+        cart.reduce(
+          (sum, current) => sum + current.item.price * current.count,
+          0
+        );
+        return sum == null ? 0 : sum;
+      })
     );
-    return sum == null ? 0 : sum;
   }
 
   getCartItems() {
-    console.log(this.cart);
-    return this.cart;
+    return of(this.cart$);
   }
 }
