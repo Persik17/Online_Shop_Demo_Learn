@@ -37,26 +37,20 @@ export class CartService {
     this.count$.next(this.count);
   }
 
-  getCartCount() {
-    let sum: number;
-    return this.cart$.asObservable().pipe(
-      map((cart) => {
-        cart.reduce((sum, current) => sum + current.count, 0);
-        return sum == null ? 0 : sum;
-      })
+  /* getCartCount() {
+    return this.cart$.pipe(
+      map((order) => order.reduce((sum, current) => sum + current.count, 0))
     );
-  }
+  } */
 
   getCartSum() {
-    let sum: number;
-    return this.cart$.asObservable().pipe(
-      map((cart) => {
-        cart.reduce(
+    return this.cart$.pipe(
+      map((order) =>
+        order.reduce(
           (sum, current) => sum + current.item.price * current.count,
           0
-        );
-        return sum == null ? 0 : sum;
-      })
+        )
+      )
     );
   }
 
