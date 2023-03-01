@@ -9,9 +9,10 @@ import { Observable, of, pipe, map } from 'rxjs';
   styleUrls: ['./nav-bar.component.css'],
 })
 export class NavBarComponent implements OnInit {
-  count: number = 0;
 
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {}
+
+  public cartItemsCount$ = this.cartService.getCartCount();
 }

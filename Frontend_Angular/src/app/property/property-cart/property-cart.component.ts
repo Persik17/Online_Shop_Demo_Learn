@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Cart } from 'src/app/model/Cart';
 
 import { CartService } from 'src/app/service/cart.service';
 
 import { Property } from '../../model/Property';
+import { Cart } from 'src/app/model/Cart';
 
 @Component({
   selector: 'app-property-cart',

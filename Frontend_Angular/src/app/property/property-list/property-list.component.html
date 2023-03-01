@@ -5,10 +5,10 @@
     </div>
     <div class="mb-lg-3 m-5">
       <ul>
-        <li class="list-group-item m-3" *ngFor="let property of properties">
+        <li class="list-group-item m-3" *ngFor="let prop of properties">
           <app-property-shop-item
             (onAddedToCartEvent)="addToCart($event)"
-            [property]="property"
+            [property]="prop"
           ></app-property-shop-item>
         </li>
       </ul>

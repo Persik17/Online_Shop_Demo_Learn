@@ -3,15 +3,18 @@ import { Injectable } from '@angular/core';
 import { Property } from '../model/Property';
 import { Cart } from '../model/Cart';
 
+import { BehaviorSubject, find, map, pipe, Observable, Observer } from 'rxjs';
+
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   private cart: Cart[] = [];
+  private cartItemsCount = new BehaviorSubject(null);
 
   constructor() {}
 
-  addToCard(prop: Property): void {
+  addToCart(prop: Property): void {
     let propCart: Cart = {
       item: prop,
       count: 1,
@@ -27,11 +30,11 @@ export class CartService {
   }
 
   getCartCount() {
-    const sum: number = this.cart.reduce(
-      (sum, current) => sum + current.count,
-      0
+    return this.cartItemsCount.pipe(
+      map((cart) => {
+        cart.reduce((sum: number, current: Cart) => sum + current.count, 0);
+      })
     );
-    return sum == null ? 0 : sum;
   }
 
   getCartSum() {

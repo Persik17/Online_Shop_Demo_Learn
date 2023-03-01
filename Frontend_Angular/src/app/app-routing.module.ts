@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PropertyCartComponent } from './property/property-cart/property-cart.component';
-import { PropertyListComponent } from './property/property-list/property-list.component';
-
 const routes: Routes = [
-  { path: '', redirectTo: 'property-list', pathMatch: 'full' },
   {
     path: 'property-cart',
-    component: PropertyCartComponent,
+    loadChildren: () =>
+      import('./property/property-cart/property-cart.module').then(
+        (m) => m.PropertyCartModule
+      ),
   },
   {
     path: 'property-list',
-    component: PropertyListComponent,
+    loadChildren: () =>
+      import('./property/property-list/property-list.module').then(
+        (m) => m.PropertyListModule
+      ),
   },
 ];
 

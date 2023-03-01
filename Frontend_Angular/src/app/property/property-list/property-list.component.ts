@@ -25,7 +25,7 @@ export class PropertyListComponent {
   }
 
   addToCart(prop: Property): void {
-    this.cartService.addToCard(prop);
+    this.cartService.addToCart(prop);
     console.log(prop);
   }
 
