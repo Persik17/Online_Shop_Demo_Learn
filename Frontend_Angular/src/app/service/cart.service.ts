@@ -15,9 +15,6 @@ export class CartService {
   count$ = new BehaviorSubject(0);
   count: number = 0;
 
-  total$ = new Object(0);
-  total: number = 0;
-
   constructor() {}
 
   addToCart(prop: Property) {
