@@ -21,13 +21,13 @@ export class CartService {
   constructor() {}
 
   addToCart(prop: Property) {
-    let propCart: Cart = {
-      item: prop,
-      count: 1,
-    };
-
     //checking on exist item in cart else just +1 to count
     if (this.cart$.value.find((p) => p.item.id == prop.id) == null) {
+      let propCart: Cart = {
+        item: prop,
+        count: 1,
+      };
+
       this.cart$.value.push(propCart);
     } else {
       this.cart$.value.find((p) => p.item.id == prop.id).count++;
@@ -37,24 +37,20 @@ export class CartService {
     this.count$.next(this.count);
   }
 
-  /* getCartCount() {
-    return this.cart$.pipe(
-      map((order) => order.reduce((sum, current) => sum + current.count, 0))
-    );
-  } */
-
   getCartSum() {
-    return this.cart$.pipe(
-      map((order) =>
-        order.reduce(
-          (sum, current) => sum + current.item.price * current.count,
-          0
+    return this.cart$
+      .asObservable()
+      .pipe(
+        map((order) =>
+          order.reduce(
+            (sum, current) => sum + current.item.price * current.count,
+            0
+          )
         )
-      )
-    );
+      );
   }
 
   getCartItems() {
-    return of(this.cart$);
+    return this.cart$.asObservable();
   }
 }
