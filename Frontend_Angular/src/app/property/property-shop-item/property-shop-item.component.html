@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="row g-0 text-center">
+    <div class="col">
+      <div class="p-3">
+        <p>{{ property.title }}</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-3">
+        <p>{{ property.price }}$</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-3">
+        <button (click)="onAddedToCart()" type="button" class="btn btn-primary">
+          Add to card
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
