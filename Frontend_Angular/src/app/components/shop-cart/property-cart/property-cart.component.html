@@ -1,6 +1,4 @@
-<div class="card" style="width: 10rem">
-  <p>Total Price: {{ sum | async | number : "1.1-2" }}$</p>
-</div>
+<app-price [sum]="sum$"></app-price>
 <div class="row">
   <div class="card shadow-lg">
     <div style="position: absolute; right: 100px">
@@ -10,6 +8,8 @@
       <ul>
         <li class="list-group-item m-3" *ngFor="let property of cartProperties">
           <app-property-cart-item
+            (onAddToCart)="addToCart($event)"
+            (onDeleteFromCart)="deleteFromCart($event)"
             [cartProp]="property"
           ></app-property-cart-item>
         </li>

@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 
-import { ProductService } from 'src/app/service/product.service';
-import { CartService } from 'src/app/service/cart.service';
+import { ProductService } from 'src/app/services/product.service';
+import { CartService } from 'src/app/services/cart.service';
 
-import { Property } from '../../model/Property';
-import { Cart } from 'src/app/model/Cart';
-import { Observable } from 'rxjs';
+import { Property } from '../../../models/property.model';
 
 @Component({
   selector: 'app-property-list',

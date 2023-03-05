@@ -5,14 +5,14 @@ const routes: Routes = [
   {
     path: 'property-cart',
     loadChildren: () =>
-      import('./property/property-cart/property-cart.module').then(
+      import('./components/shop-cart/property-cart.module').then(
         (m) => m.PropertyCartModule
       ),
   },
   {
     path: 'property-list',
     loadChildren: () =>
-      import('./property/property-list/property-list.module').then(
+      import('./components/shop-list/property-list.module').then(
         (m) => m.PropertyListModule
       ),
   },

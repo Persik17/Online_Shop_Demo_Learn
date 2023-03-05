@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CartService } from '../service/cart.service';
+import { CartService } from '../../services/cart.service';
 
 import { Observable, of, pipe, map } from 'rxjs';
 
@@ -9,13 +9,11 @@ import { Observable, of, pipe, map } from 'rxjs';
   styleUrls: ['./nav-bar.component.css'],
 })
 export class NavBarComponent implements OnInit {
-  count: number;
 
   constructor(private cartService: CartService) {}
 
-  ngOnInit(): void {
-    this.cartService.count$.subscribe((count) => {
-      this.count = count;
-    });
-  }
+  ngOnInit(): void {}
+
+  count$ = this.cartService.getCartCount();
+
 }

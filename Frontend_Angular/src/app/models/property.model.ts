@@ -1,5 +1,3 @@
-import { Rating } from './Rating';
-
 export interface Property {
   id: number;
   title: string;
@@ -7,5 +5,8 @@ export interface Property {
   description: string;
   category: string;
   image: string;
-  rating: Rating;
+  rating: {
+    rate: number;
+    count: number;
+  };
 }

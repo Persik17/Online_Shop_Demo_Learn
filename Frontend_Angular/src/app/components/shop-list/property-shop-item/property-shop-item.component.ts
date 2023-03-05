@@ -1,6 +1,6 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 
-import { Property } from '../../model/Property';
+import { Property } from '../../../models/property.model';
 
 @Component({
   selector: 'app-property-shop-item',
@@ -8,8 +8,8 @@ import { Property } from '../../model/Property';
   styleUrls: ['./property-shop-item.component.css'],
 })
 export class PropertyShopItemComponent {
-  @Output() onAddedToCartEvent = new EventEmitter<Property>();
   @Input() property: Property;
+  @Output() onAddedToCartEvent = new EventEmitter<Property>();
 
   onAddedToCart() {
     this.onAddedToCartEvent.emit(this.property);
