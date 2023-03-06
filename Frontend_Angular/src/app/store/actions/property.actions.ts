@@ -5,6 +5,7 @@ import { Property } from '../../models/property.model';
 export enum PropertyEnumActions {
   GetPropertyItems = '[Property] Get Property Items',
   GetPropertySuccess = '[Property] Get Property Success',
+  GetPropertyFail = '[Property] Get Property Fail',
 }
 
 export class GetPropertyItems implements Action {
@@ -16,4 +17,12 @@ export class GetPropertySuccess implements Action {
   constructor(public payload: Property[]) {}
 }
 
-export type PropertyActions = GetPropertyItems | GetPropertySuccess;
+export class GetPropertyFail implements Action {
+  public readonly type = PropertyEnumActions.GetPropertyFail;
+  constructor(public payload: any) {}
+}
+
+export type PropertyActions =
+  | GetPropertyItems
+  | GetPropertySuccess
+  | GetPropertyFail;

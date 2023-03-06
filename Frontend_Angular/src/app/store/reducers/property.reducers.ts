@@ -1,5 +1,7 @@
-import { PropertyEnumActions } from '../actions/property.actions';
-import { PropertyActions } from '../actions/property.actions';
+import {
+  PropertyEnumActions,
+  PropertyActions,
+} from '../actions/property.actions';
 
 import { initialPropertyState, PropertyState } from '../state/property.state';
 
@@ -12,6 +14,21 @@ export const propertyReducers = (
       return {
         ...state,
         property: action.payload,
+        error: null,
+      };
+    }
+
+    case PropertyEnumActions.GetPropertyFail: {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    }
+
+    case PropertyEnumActions.GetPropertyItems: {
+      return {
+        ...state,
+        error: null,
       };
     }
 

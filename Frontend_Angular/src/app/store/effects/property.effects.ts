@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
-import { switchMap, map, withLatestFrom, catchError } from 'rxjs/operators';
+import { switchMap, map, catchError } from 'rxjs/operators';
 
 import { AppState } from '../state/app.state';
 
@@ -10,6 +10,7 @@ import {
   PropertyEnumActions,
   GetPropertySuccess,
   GetPropertyItems,
+  GetPropertyFail,
 } from '../actions/property.actions';
 
 import { PropertyService } from '../../services/property.service';
@@ -20,13 +21,14 @@ import { Property } from 'src/app/models/property.model';
 
 @Injectable()
 export class PropertyEffects {
-  getAttendees$ = createEffect(() =>
+  getProperties$ = createEffect(() =>
     this._actions$.pipe(
       ofType(PropertyEnumActions.GetPropertyItems),
       switchMap((action: GetPropertyItems) =>
-        this._propertyService
-          .getAllProps()
-          .pipe(map((props: Property[]) => new GetPropertySuccess(props)))
+        this._propertyService.getAllProps().pipe(
+          map((props: Property[]) => new GetPropertySuccess(props)),
+          catchError((error) => of(new GetPropertyFail(error)))
+        )
       )
     )
   );
