@@ -6,6 +6,8 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +28,7 @@ import { PropertyEffects } from './store/effects/property.effects';
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([PropertyEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

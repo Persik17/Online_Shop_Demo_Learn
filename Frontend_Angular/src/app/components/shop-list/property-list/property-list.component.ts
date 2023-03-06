@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 
-import { PropertyService } from 'src/app/services/property.service';
 import { CartService } from 'src/app/services/cart.service';
 
 import { Property } from '../../../models/property.model';
@@ -20,7 +19,6 @@ import { GetPropertyItems } from '../../../store/actions/property.actions';
 })
 export class PropertyListComponent {
   constructor(
-    private propertyService: PropertyService,
     private cartService: CartService,
     private store: Store<AppState>
   ) {}
