@@ -8,10 +8,10 @@ import { HttpService } from './http.service';
 @Injectable({
   providedIn: 'root',
 })
-export class ProductService {
+export class PropertyService {
   constructor(private http: HttpService) {}
 
-  getAllProps(): Observable<Property[]> {
+  getAllProps() {
     return this.http.getAllProperties();
   }
 }

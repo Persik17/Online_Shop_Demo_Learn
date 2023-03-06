@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Property } from 'src/app/models/property.model';
 
+import { Property } from 'src/app/models/property.model';
 import { Cart } from '../../../models/cart.model';
 
 @Component({

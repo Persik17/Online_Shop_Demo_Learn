@@ -1,9 +1,17 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
 
-import { ProductService } from 'src/app/services/product.service';
+import { PropertyService } from 'src/app/services/property.service';
 import { CartService } from 'src/app/services/cart.service';
 
 import { Property } from '../../../models/property.model';
+
+import { AppState } from 'src/app/store/state/app.state';
+
+import { selectPropertyList } from 'src/app/store/selectors/property.selectors';
+
+import { GetPropertyItems } from '../../../store/actions/property.actions';
 
 @Component({
   selector: 'app-property-list',
@@ -11,25 +19,20 @@ import { Property } from '../../../models/property.model';
   styleUrls: ['./property-list.component.css'],
 })
 export class PropertyListComponent {
-  properties: Property[];
-
   constructor(
-    private productService: ProductService,
-    private cartService: CartService
+    private propertyService: PropertyService,
+    private cartService: CartService,
+    private store: Store<AppState>
   ) {}
 
-  getShopItems(): void {
-    this.productService
-      .getAllProps()
-      .subscribe((data) => (this.properties = data));
-  }
+  props$ = this.store.pipe(select(selectPropertyList));
 
   addToCart(prop: Property): void {
     this.cartService.addToCart(prop);
     console.log(prop);
   }
 
-  ngOnInit(): void {
-    this.getShopItems();
+  ngOnInit() {
+    this.store.dispatch(new GetPropertyItems());
   }
 }

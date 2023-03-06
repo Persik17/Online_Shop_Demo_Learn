@@ -80,7 +80,7 @@ export class CartService {
       );
   }
 
-  getCartItems() {
+  getCartItems(): Observable<Cart[]> {
     return this.cart$.asObservable();
   }
 }

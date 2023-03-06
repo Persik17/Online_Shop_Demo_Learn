@@ -5,7 +5,7 @@
     </div>
     <div class="mb-lg-3 m-5">
       <ul>
-        <li class="list-group-item m-3" *ngFor="let prop of properties">
+        <li class="list-group-item m-3" *ngFor="let prop of props$ | async">
           <app-property-shop-item
             (onAddedToCartEvent)="addToCart($event)"
             [property]="prop"
