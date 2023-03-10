@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+
+import { Subscription } from 'rxjs';
+
+import { PropertyService } from './services/property.service';
 
 @Component({
   selector: 'app-root',
