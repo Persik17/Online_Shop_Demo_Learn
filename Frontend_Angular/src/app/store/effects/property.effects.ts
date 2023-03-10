@@ -15,8 +15,6 @@ import {
 
 import { PropertyService } from '../../services/property.service';
 
-import { selectPropertyList } from '../selectors/property.selectors';
-
 import { Property } from 'src/app/models/property.model';
 
 @Injectable()
@@ -24,7 +22,7 @@ export class PropertyEffects {
   getProperties$ = createEffect(() =>
     this._actions$.pipe(
       ofType(PropertyEnumActions.GetPropertyItems),
-      switchMap((action: GetPropertyItems) =>
+      switchMap(() =>
         this._propertyService.getAllProps().pipe(
           map((props: Property[]) => new GetPropertySuccess(props)),
           catchError((error) => of(new GetPropertyFail(error)))

@@ -1,25 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
+import { Component, OnDestroy } from '@angular/core';
 
-import { AppState } from './store/state/app.state';
+import { Subscription } from 'rxjs';
 
-import { selectPropertyList } from './store/selectors/property.selectors';
-
-import { GetPropertyItems } from './store/actions/property.actions';
+import { PropertyService } from './services/property.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'Frontend_Angular';
-
-  config$ = this._store.pipe(select(selectPropertyList));
-
-  constructor(private _store: Store<AppState>) {}
-
-  ngOnInit() {
-    this._store.dispatch(new GetPropertyItems());
-  }
 }
