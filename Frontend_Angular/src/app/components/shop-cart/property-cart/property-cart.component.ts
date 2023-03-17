@@ -16,7 +16,7 @@ import { Cart } from '../../../models';
   styleUrls: ['./property-cart.component.css'],
 })
 export class PropertyCartComponent implements OnInit {
-  cart$: Observable<Cart[]>;
+  cart$: Observable<Cart[]> = this.cartService.getCart();
   carTotal$: Observable<number> = this.cartService.getCartTotal();
 
   constructor(
@@ -26,7 +26,6 @@ export class PropertyCartComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(new GetCart());
-    this.cart$ = this.cartService.getCart();
   }
 
   addToCart(cartProp: Cart) {
