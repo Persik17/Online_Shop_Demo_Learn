@@ -9,13 +9,12 @@ import { AppState } from '../state/app.state';
 import {
   PropertyEnumActions,
   GetPropertySuccess,
-  GetPropertyItems,
   GetPropertyFail,
 } from '../actions/property.actions';
 
-import { PropertyService } from '../../services/property.service';
+import { PropertyService } from '../../services';
 
-import { Property } from 'src/app/models/property.model';
+import { Property } from '../../models';
 
 @Injectable()
 export class PropertyEffects {

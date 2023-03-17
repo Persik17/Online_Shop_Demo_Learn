@@ -1,86 +1,70 @@
 import { Injectable } from '@angular/core';
+import { select, Store } from '@ngrx/store';
 
-import { Property } from '../models/property.model';
-import { Cart } from '../models/cart.model';
+import { find, map, Observable } from 'rxjs';
 
-import { BehaviorSubject, map, Observable, Subject, of, from } from 'rxjs';
+import { Property, Cart } from '../models';
+
+import { AddToCart, DeleteFromCart } from '../store/actions/cart.actions';
+
+import {
+  getCart,
+  getCartCount,
+  getCartTotal,
+} from '../store/selectors/cart.selectors';
+
+import { AppState } from '../store/state/app.state';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  cart$: BehaviorSubject<Cart[]> = new BehaviorSubject<Cart[]>([]);
-  cart: Cart[] = [];
+  private readonly key: string = 'cartItems';
 
-  constructor() {}
+  public cart: Observable<Cart[]> = this.store.pipe(select(getCart));
 
-  addToCart(prop: Property) {
-    if (prop) {
-      let cart = this.cart$.value.find((p) => p.item.id == prop.id);
-
-      if (cart) {
-        cart.count++;
-      } else {
-        let id = 1;
-
-        id = Math.max.apply(
-          null,
-          this.cart.map((item) => item.id)
-        );
-
-        let propCart: Cart = {
-          id: id + 1,
-          item: prop,
-          count: 1,
-        };
-
-        this.cart$.value.push(propCart);
-      }
-
-      this.cart$.next(this.cart);
-    }
+  constructor(private store: Store<AppState>) {
+    /* this.load(); */
   }
 
-  deleteFromCart(prop: Property) {
+  /* load() {
+    if (localStorage.getItem(this.key) != null) {
+      let cart: Observable<Cart[]> = JSON.parse(localStorage.getItem(this.key));
+    } else localStorage.setItem(this.key, JSON.stringify([]));
+  } */
+
+  /* updateCart() {
+    localStorage.setItem(this.key, JSON.stringify(this.cart));
+  } */
+
+  addToCart(prop: Property) {
+    let propCart: Cart = {
+      id: prop.id,
+      item: prop,
+      count: 1,
+    };
+
+    this.store.dispatch(new AddToCart(propCart));
+    /* this.updateCart(); */
+  }
+
+  deleteFromCart(cartItem: Cart) {
     try {
-      if (prop) {
-        let cart = this.cart$.value.find((p) => p.item.id == prop.id);
-
-        if (cart.count > 1) {
-          cart.count--;
-        } else {
-          this.cart.splice(this.cart.indexOf(cart), 1);
-        }
-
-        this.cart$.next(this.cart);
-      }
+      this.store.dispatch(new DeleteFromCart(cartItem.id));
     } catch (e) {
       console.log(e);
     }
   }
 
-  getCartCount(): Observable<number> {
-    return this.cart$
-      .asObservable()
-      .pipe(
-        map((order) => order.reduce((sum, current) => sum + current.count, 0))
-      );
+  getCart(): Observable<Cart[]> {
+    return this.cart;
   }
 
-  getCartSum(): Observable<number> {
-    return this.cart$
-      .asObservable()
-      .pipe(
-        map((order) =>
-          order.reduce(
-            (sum, current) => sum + current.item.price * current.count,
-            0
-          )
-        )
-      );
+  public getCartCount(): Observable<number> {
+    return this.store.pipe(select(getCartCount));
   }
 
-  getCartItems(): Observable<Cart[]> {
-    return this.cart$.asObservable();
+  public getCartTotal(): Observable<number> {
+    return this.store.pipe(select(getCartTotal));
   }
 }

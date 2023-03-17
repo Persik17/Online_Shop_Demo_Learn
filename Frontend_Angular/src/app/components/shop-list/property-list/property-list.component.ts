@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
-import { CartService } from 'src/app/services/cart.service';
+import { CartService } from '../../../services';
 
-import { Property } from '../../../models/property.model';
+import { Property } from '../../../models';
 
 import { AppState } from 'src/app/store/state/app.state';
 
-import { selectPropertyList } from 'src/app/store/selectors/property.selectors';
+import { getPropertyList } from 'src/app/store/selectors/property.selectors';
 
 import { GetPropertyItems } from '../../../store/actions/property.actions';
 
@@ -17,17 +17,20 @@ import { GetPropertyItems } from '../../../store/actions/property.actions';
   templateUrl: './property-list.component.html',
   styleUrls: ['./property-list.component.css'],
 })
-export class PropertyListComponent {
+export class PropertyListComponent implements OnInit {
+  props$: Observable<Property[]> = this.store.pipe(select(getPropertyList));
+
   constructor(
     private cartService: CartService,
     private store: Store<AppState>
   ) {}
 
-  props$ = this.store.pipe(select(selectPropertyList));
-
   addToCart(prop: Property): void {
+    if (!prop) {
+      return;
+    }
+
     this.cartService.addToCart(prop);
-    console.log(prop);
   }
 
   ngOnInit() {

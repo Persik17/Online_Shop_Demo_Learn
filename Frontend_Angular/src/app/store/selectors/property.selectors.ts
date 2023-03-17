@@ -5,7 +5,7 @@ import { PropertyState } from '../state/property.state';
 
 const selectProperty = (state: AppState) => state.prop;
 
-export const selectPropertyList = createSelector(
+export const getPropertyList = createSelector(
   selectProperty,
   (state: PropertyState) => state.property
 );

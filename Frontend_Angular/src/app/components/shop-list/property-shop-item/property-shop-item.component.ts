@@ -1,6 +1,6 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 
-import { Property } from '../../../models/property.model';
+import { Property } from '../../../models';
 
 @Component({
   selector: 'app-property-shop-item',

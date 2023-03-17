@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -10,14 +10,14 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/enviroments/enviromet';
 
 import { appReducers } from './store/reducers/app.reducers';
+import { metaReducers } from './store/reducers/index';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppComponent } from './app.component';
+import { NavBarComponent } from './components';
 
 import { AppRoutingModule } from './app-routing.module';
-
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 import { PropertyEffects } from './store/effects/property.effects';
 
@@ -28,7 +28,7 @@ import { PropertyEffects } from './store/effects/property.effects';
     HttpClientModule,
     AppRoutingModule,
     CommonModule,
-    StoreModule.forRoot(appReducers),
+    StoreModule.forRoot(appReducers, { metaReducers }),
     EffectsModule.forRoot([PropertyEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     StoreDevtoolsModule.instrument({

@@ -4,13 +4,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-import { Property } from '../models/property.model';
+import { Property } from '../models';
+
+import { environment } from '../../enviroments/enviromet';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HttpService {
-  url = 'https://fakestoreapi.com/products';
+  private readonly url = environment.apiFakeProducts;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -23,7 +25,7 @@ export class HttpService {
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error); // log to console instead
+      console.error(error);
       console.log(`${operation} failed: ${error.message}`);
       return of(result as T);
     };

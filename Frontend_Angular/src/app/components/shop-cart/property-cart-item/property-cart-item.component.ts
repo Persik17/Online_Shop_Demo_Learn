@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Property } from 'src/app/models/property.model';
-import { Cart } from '../../../models/cart.model';
+import { Cart } from '../../../models';
 
 @Component({
   selector: 'app-property-cart-item',
@@ -10,14 +9,14 @@ import { Cart } from '../../../models/cart.model';
 })
 export class PropertyCartItemComponent {
   @Input() cartProp: Cart;
-  @Output() onDeleteFromCart = new EventEmitter<Property>();
-  @Output() onAddToCart = new EventEmitter<Property>();
+  @Output() onDeleteFromCart = new EventEmitter<Cart>();
+  @Output() onAddToCart = new EventEmitter<Cart>();
 
   onDelete() {
-    this.onDeleteFromCart.emit(this.cartProp.item);
+    this.onDeleteFromCart.emit(this.cartProp);
   }
 
   onAdd() {
-    this.onAddToCart.emit(this.cartProp.item);
+    this.onAddToCart.emit(this.cartProp);
   }
 }

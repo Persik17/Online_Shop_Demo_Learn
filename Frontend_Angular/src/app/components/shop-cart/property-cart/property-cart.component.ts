@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { CartService } from 'src/app/services/cart.service';
 
-import { Cart } from 'src/app/models/cart.model';
-import { Property } from 'src/app/models/property.model';
+import { GetCart } from 'src/app/store/actions/cart.actions';
+
+import { AppState } from 'src/app/store/state/app.state';
+
+import { Cart } from '../../../models';
 
 @Component({
   selector: 'app-property-cart',
@@ -11,23 +16,24 @@ import { Property } from 'src/app/models/property.model';
   styleUrls: ['./property-cart.component.css'],
 })
 export class PropertyCartComponent implements OnInit {
-  cartProperties: Cart[] = [];
+  cart$: Observable<Cart[]>;
+  carTotal$: Observable<number> = this.cartService.getCartTotal();
 
-  constructor(private cartService: CartService) {}
-
-  sum$ = this.cartService.getCartSum();
+  constructor(
+    private cartService: CartService,
+    private store: Store<AppState>
+  ) {}
 
   ngOnInit(): void {
-    this.cartService.getCartItems().subscribe((items) => {
-      this.cartProperties = items;
-    });
+    this.store.dispatch(new GetCart());
+    this.cart$ = this.cartService.getCart();
   }
 
-  addToCart(prop: Property): void {
-    this.cartService.addToCart(prop);
+  addToCart(cartProp: Cart) {
+    this.cartService.addToCart(cartProp.item);
   }
 
-  deleteFromCart(prop: Property) {
-    this.cartService.deleteFromCart(prop);
+  deleteFromCart(cartProp: Cart) {
+    this.cartService.deleteFromCart(cartProp);
   }
 }

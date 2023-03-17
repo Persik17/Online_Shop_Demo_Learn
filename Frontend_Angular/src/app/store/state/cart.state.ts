@@ -1,17 +1,15 @@
-import { Cart } from 'src/app/models/cart.model';
+import { EntityState } from "@ngrx/entity";
 
-export interface CartState {
-  cart: Cart[];
-  currentCartItemId: number | null;
-  cartTotalSum: number;
-  cartCount: number;
-  error: any;
+import { Cart } from '../../models';
+
+export interface CartState extends EntityState<Cart> {
+  selectedLineItemId: number | null,
+  error: any
 }
 
 export const initialCartState: CartState = {
-  cart: [],
-  currentCartItemId: 1,
-  cartTotalSum: 0,
-  cartCount: 0,
+  ids: [],
+  entities: {},
+  selectedLineItemId: null,
   error: null,
 };

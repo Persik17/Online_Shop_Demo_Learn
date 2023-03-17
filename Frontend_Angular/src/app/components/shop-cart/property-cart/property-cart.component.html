@@ -1,9 +1,9 @@
 <div>
-  <div *ngIf="cartProperties.length == 0">
+  <div *ngIf="!cart$">
     <app-cart-plug></app-cart-plug>
   </div>
-  <div *ngIf="cartProperties.length > 0">
-    <app-price [sum]="sum$"></app-price>
+  <div *ngIf="cart$">
+    <app-price [sum]="carTotal$"></app-price>
     <div class="row">
       <div class="card shadow-lg">
         <div style="position: absolute; right: 100px">
@@ -13,7 +13,7 @@
           <ul>
             <li
               class="list-group-item m-3"
-              *ngFor="let property of cartProperties"
+              *ngFor="let property of cart$ | async"
             >
               <app-property-cart-item
                 (onAddToCart)="addToCart($event)"

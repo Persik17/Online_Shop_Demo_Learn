@@ -1,4 +1,4 @@
-import { Property } from 'src/app/models/property.model';
+import { Property } from '../../models';
 
 export interface PropertyState {
   property: Property[];
