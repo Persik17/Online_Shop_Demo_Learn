@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 
-import { find, map, Observable } from 'rxjs';
+import { filter, find, map, Observable } from 'rxjs';
 
 import { Property, Cart } from '../models';
 
-import { AddToCart, DeleteFromCart } from '../store/actions/cart.actions';
+import { AddToCart, DeleteFromCart, GetCartItems, GetCartSuccess } from '../store/actions/cart.actions';
 
 import {
   getCart,
@@ -15,27 +15,48 @@ import {
 
 import { AppState } from '../store/state/app.state';
 
+export const key = 'cartState';
+
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  private readonly key: string = 'cartItems';
+  private isInit = false;
 
   public cart: Observable<Cart[]> = this.store.pipe(select(getCart));
 
-  constructor(private store: Store<AppState>) {
-    /* this.load(); */
+  constructor(private store: Store<AppState>) {}
+
+  init() {
+    if (this.isInit) {
+      return;
+    }
+
+    this.isInit = true;
+    this.loadFromStorage();
+
+    this.store
+      .pipe(
+        select(getCart),
+        filter((state) => !!state)
+      )
+      .subscribe((state) => {
+        localStorage.setItem(key, JSON.stringify(state));
+      });
+
+    window.addEventListener('storage', () => this.loadFromStorage());
   }
 
-  /* load() {
-    if (localStorage.getItem(this.key) != null) {
-      let cart: Observable<Cart[]> = JSON.parse(localStorage.getItem(this.key));
-    } else localStorage.setItem(this.key, JSON.stringify([]));
-  } */
-
-  /* updateCart() {
-    localStorage.setItem(this.key, JSON.stringify(this.cart));
-  } */
+  private loadFromStorage() {
+    const storageState = localStorage.getItem(key);
+    if (storageState) {
+      this.store.dispatch(
+        new GetCartItems({
+          state: JSON.parse(storageState),
+        })
+      );
+    }
+  }
 
   addToCart(prop: Property) {
     let propCart: Cart = {
@@ -45,7 +66,6 @@ export class CartService {
     };
 
     this.store.dispatch(new AddToCart(propCart));
-    /* this.updateCart(); */
   }
 
   deleteFromCart(cartItem: Cart) {
@@ -60,11 +80,11 @@ export class CartService {
     return this.cart;
   }
 
-  public getCartCount(): Observable<number> {
+  getCartCount(): Observable<number> {
     return this.store.pipe(select(getCartCount));
   }
 
-  public getCartTotal(): Observable<number> {
+  getCartTotal(): Observable<number> {
     return this.store.pipe(select(getCartTotal));
   }
 }

@@ -15,10 +15,33 @@ export function cartReducers(
   action: CartActions
 ): CartState {
   switch (action.type) {
-    case CartEnumActions.AddToCartFail: {
+    case CartEnumActions.GetCartFail:
+    case CartEnumActions.AddToCartFail:
+    case CartEnumActions.DeleteFromCartFail: {
       return {
         ...state,
         error: action.payload,
+      };
+    }
+
+    case CartEnumActions.GetCartItems:
+    case CartEnumActions.AddToCartSuccess:
+    case CartEnumActions.DeleteFromCartSuccess: {
+      return {
+        ...state,
+        error: null,
+      };
+    }
+
+    case CartEnumActions.GetCartSuccess: {
+      const cart = action.payload;
+      return {
+        ids: cart.map((c) => c.id),
+        error: null,
+        entities: {
+          ...state.entities,
+        },
+        selectedLineItemId: null,
       };
     }
 
@@ -37,17 +60,8 @@ export function cartReducers(
           state
         );
       } else {
-        /* action.payload.id + 1; */
-
         return cartAdapter.addOne(action.payload, state);
       }
-    }
-
-    case CartEnumActions.DeleteFromCartFail: {
-      return {
-        ...state,
-        error: action.payload,
-      };
     }
 
     case CartEnumActions.DeleteFromCart: {

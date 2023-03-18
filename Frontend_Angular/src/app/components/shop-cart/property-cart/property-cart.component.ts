@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { CartService } from 'src/app/services/cart.service';
 
-import { GetCart } from 'src/app/store/actions/cart.actions';
+import { GetCartItems } from 'src/app/store/actions/cart.actions';
 
 import { AppState } from 'src/app/store/state/app.state';
 
@@ -24,8 +24,8 @@ export class PropertyCartComponent implements OnInit {
     private store: Store<AppState>
   ) {}
 
-  ngOnInit(): void {
-    this.store.dispatch(new GetCart());
+  ngOnInit() {
+    this.cartService.init();
   }
 
   addToCart(cartProp: Cart) {

@@ -2,6 +2,8 @@ import { Action } from '@ngrx/store';
 
 import { Cart } from '../../models';
 
+import { CartState } from '../state/cart.state';
+
 export enum CartEnumActions {
   GetCartItems = '[Cart] Get Cart Items',
   GetCartSuccess = '[Cart] Get Cart Success',
@@ -17,17 +19,19 @@ export enum CartEnumActions {
 }
 
 //get
-export class GetCart implements Action {
+export class GetCartItems implements Action {
   public readonly type = CartEnumActions.GetCartItems;
+  constructor(public payload: { state: CartState }) {
+  }
 }
 
 export class GetCartSuccess implements Action {
-  public readonly type = CartEnumActions.AddToCartSuccess;
+  public readonly type = CartEnumActions.GetCartSuccess;
   constructor(public payload: Cart[]) {}
 }
 
 export class GetCartFail implements Action {
-  public readonly type = CartEnumActions.AddToCartFail;
+  public readonly type = CartEnumActions.GetCartFail;
   constructor(public payload: any) {}
 }
 
@@ -64,7 +68,7 @@ export class DeleteFromCartFail implements Action {
 }
 
 export type CartActions =
-  | GetCart
+  | GetCartItems
   | GetCartSuccess
   | GetCartFail
   | AddToCart

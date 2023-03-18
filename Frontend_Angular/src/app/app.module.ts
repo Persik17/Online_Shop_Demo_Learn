@@ -10,7 +10,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/enviroments/enviromet';
 
 import { appReducers } from './store/reducers/app.reducers';
-import { metaReducers } from './store/reducers/index';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -28,7 +27,7 @@ import { PropertyEffects } from './store/effects/property.effects';
     HttpClientModule,
     AppRoutingModule,
     CommonModule,
-    StoreModule.forRoot(appReducers, { metaReducers }),
+    StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([PropertyEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     StoreDevtoolsModule.instrument({
