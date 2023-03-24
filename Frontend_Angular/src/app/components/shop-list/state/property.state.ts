@@ -1,4 +1,4 @@
-import { Property } from '../../models';
+import { Property } from '../../../models';
 
 export interface PropertyState {
   property: Property[];
@@ -7,7 +7,7 @@ export interface PropertyState {
 }
 
 export const initialPropertyState: PropertyState = {
-  property: null,
+  property: [],
   selectedProperty: null,
   error: null,
 };

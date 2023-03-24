@@ -1,10 +1,10 @@
 import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 
-import { Cart } from '../../models';
+import { Cart } from '../../../models';
 
-import { CartEnumActions, CartActions } from '../actions/cart.actions';
+import { CartEnumActions, CartActions } from './cart.actions';
 
-import { initialCartState, CartState } from '../state/cart.state';
+import { initialCartState, CartState } from './cart.state';
 
 export const cartAdapter: EntityAdapter<Cart> = createEntityAdapter<Cart>();
 
@@ -41,7 +41,6 @@ export function cartReducers(
         entities: {
           ...state.entities,
         },
-        selectedLineItemId: null,
       };
     }
 

@@ -1,20 +1,17 @@
 import { Injectable } from '@angular/core';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
-import { of } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
-
-import { AppState } from '../state/app.state';
+import { of } from 'rxjs';
 
 import {
   PropertyEnumActions,
   GetPropertySuccess,
   GetPropertyFail,
-} from '../actions/property.actions';
+} from './property.actions';
 
-import { PropertyService } from '../../services';
+import { PropertyService } from '../../../services';
 
-import { Property } from '../../models';
+import { Property } from '../../../models';
 
 @Injectable()
 export class PropertyEffects {
@@ -32,7 +29,6 @@ export class PropertyEffects {
 
   constructor(
     private _propertyService: PropertyService,
-    private _actions$: Actions,
-    private _store: Store<AppState>
+    private _actions$: Actions
   ) {}
 }

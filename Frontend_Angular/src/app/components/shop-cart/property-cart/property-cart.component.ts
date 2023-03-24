@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { CartService } from 'src/app/services/cart.service';
-
-import { GetCartItems } from 'src/app/store/actions/cart.actions';
-
-import { AppState } from 'src/app/store/state/app.state';
 
 import { Cart } from '../../../models';
 
@@ -21,12 +16,9 @@ export class PropertyCartComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private store: Store<AppState>
   ) {}
 
-  ngOnInit() {
-    this.cartService.init();
-  }
+  ngOnInit() {}
 
   addToCart(cartProp: Cart) {
     this.cartService.addToCart(cartProp.item);

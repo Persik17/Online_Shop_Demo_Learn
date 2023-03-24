@@ -1,7 +1,7 @@
 import { RouterReducerState } from '@ngrx/router-store';
 
-import { PropertyState, initialPropertyState } from './property.state';
-import { CartState, initialCartState } from './cart.state';
+import { initialPropertyState, PropertyState } from 'src/app/components/shop-list/state/property.state';
+import { CartState, initialCartState } from 'src/app/components/shop-cart/state/cart.state';
 
 export interface AppState {
   router?: RouterReducerState;

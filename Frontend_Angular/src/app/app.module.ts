@@ -7,18 +7,20 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { environment } from 'src/enviroments/enviromet';
-
-import { appReducers } from './store/reducers/app.reducers';
-
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+import { environment } from 'src/enviroments/enviromet';
+
+//store
+import { metaReducers, appReducers } from '../store/app.reducers';
+import { HydrationEffects } from '../store/hydration/hydration.effects';
+
+//components
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components';
 
+//routing
 import { AppRoutingModule } from './app-routing.module';
-
-import { PropertyEffects } from './store/effects/property.effects';
 
 @NgModule({
   declarations: [AppComponent, NavBarComponent],
@@ -27,8 +29,8 @@ import { PropertyEffects } from './store/effects/property.effects';
     HttpClientModule,
     AppRoutingModule,
     CommonModule,
-    StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([PropertyEffects]),
+    StoreModule.forRoot(appReducers, { metaReducers }),
+    EffectsModule.forRoot([HydrationEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

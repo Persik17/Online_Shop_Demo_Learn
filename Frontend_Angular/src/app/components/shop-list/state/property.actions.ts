@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { Property } from '../../models';
+import { Property } from '../../../models';
 
 export enum PropertyEnumActions {
   GetPropertyItems = '[Property] Get Property Items',

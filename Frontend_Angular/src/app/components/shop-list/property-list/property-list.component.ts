@@ -6,11 +6,11 @@ import { CartService } from '../../../services';
 
 import { Property } from '../../../models';
 
-import { AppState } from 'src/app/store/state/app.state';
+import { AppState } from '../../../../store/app.state';
 
-import { getPropertyList } from 'src/app/store/selectors/property.selectors';
+import { getPropertyList } from '../state/property.selectors';
 
-import { GetPropertyItems } from '../../../store/actions/property.actions';
+import { GetPropertyItems } from '../state/property.actions';
 
 @Component({
   selector: 'app-property-list',

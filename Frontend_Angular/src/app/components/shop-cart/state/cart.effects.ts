@@ -1,32 +1,16 @@
 import { Injectable } from '@angular/core';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
-import {
-  map,
-  catchError,
-  mergeMap,
-  switchMap,
-  withLatestFrom,
-  tap,
-} from 'rxjs/operators';
+import { map, catchError, switchMap } from 'rxjs/operators';
 
-import { AppState } from '../state/app.state';
+import { AppState } from '../../../../store/app.state';
 
-import {
-  CartEnumActions,
-  AddToCart,
-  AddToCartSuccess,
-  AddToCartFail,
-  GetCartSuccess,
-  GetCartFail,
+import { CartEnumActions, GetCartSuccess, GetCartFail } from './cart.actions';
 
-} from '../actions/cart.actions';
+import { CartService } from '../../../services';
 
-import { CartService } from '../../services';
-
-import { Cart, Property } from 'src/app/models';
-import { GetPropertyFail, GetPropertySuccess } from '../actions/property.actions';
+import { Cart } from 'src/app/models';
 
 @Injectable({ providedIn: 'root' })
 export class CartEffects {

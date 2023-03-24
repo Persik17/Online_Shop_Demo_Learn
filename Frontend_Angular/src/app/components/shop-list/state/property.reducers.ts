@@ -1,7 +1,4 @@
-import {
-  PropertyEnumActions,
-  PropertyActions,
-} from '../actions/property.actions';
+import { PropertyEnumActions, PropertyActions } from './property.actions';
 
 import { initialPropertyState, PropertyState } from '../state/property.state';
 

@@ -5,15 +5,18 @@ import { filter, find, map, Observable } from 'rxjs';
 
 import { Property, Cart } from '../models';
 
-import { AddToCart, DeleteFromCart, GetCartItems, GetCartSuccess } from '../store/actions/cart.actions';
+import {
+  AddToCart,
+  DeleteFromCart,
+} from '../components/shop-cart/state/cart.actions';
 
 import {
   getCart,
   getCartCount,
   getCartTotal,
-} from '../store/selectors/cart.selectors';
+} from '../components/shop-cart/state/cart.selectors';
 
-import { AppState } from '../store/state/app.state';
+import { AppState } from '../../store/app.state';
 
 export const key = 'cartState';
 
@@ -26,37 +29,6 @@ export class CartService {
   public cart: Observable<Cart[]> = this.store.pipe(select(getCart));
 
   constructor(private store: Store<AppState>) {}
-
-  init() {
-    if (this.isInit) {
-      return;
-    }
-
-    this.isInit = true;
-    this.loadFromStorage();
-
-    this.store
-      .pipe(
-        select(getCart),
-        filter((state) => !!state)
-      )
-      .subscribe((state) => {
-        localStorage.setItem(key, JSON.stringify(state));
-      });
-
-    window.addEventListener('storage', () => this.loadFromStorage());
-  }
-
-  private loadFromStorage() {
-    const storageState = localStorage.getItem(key);
-    if (storageState) {
-      this.store.dispatch(
-        new GetCartItems({
-          state: JSON.parse(storageState),
-        })
-      );
-    }
-  }
 
   addToCart(prop: Property) {
     let propCart: Cart = {

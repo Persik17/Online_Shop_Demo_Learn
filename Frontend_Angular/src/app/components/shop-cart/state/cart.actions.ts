@@ -1,8 +1,8 @@
 import { Action } from '@ngrx/store';
 
-import { Cart } from '../../models';
+import { Cart } from '../../../models';
 
-import { CartState } from '../state/cart.state';
+import { CartState } from './cart.state';
 
 export enum CartEnumActions {
   GetCartItems = '[Cart] Get Cart Items',
@@ -21,8 +21,7 @@ export enum CartEnumActions {
 //get
 export class GetCartItems implements Action {
   public readonly type = CartEnumActions.GetCartItems;
-  constructor(public payload: { state: CartState }) {
-  }
+  constructor(public payload: { state: CartState }) {}
 }
 
 export class GetCartSuccess implements Action {
