@@ -2,7 +2,7 @@ import { ActionReducer, Action } from '@ngrx/store';
 
 import * as HydrationActions from './hydration.actions';
 
-import { CartState } from '../../app/components/shop-cart/state/cart.state';
+import * as fromRoot from "../app.state";
 
 function isHydrateSuccess(
   action: Action
@@ -11,8 +11,8 @@ function isHydrateSuccess(
 }
 
 export const hydrationMetaReducer = (
-  reducer: ActionReducer<CartState>
-): ActionReducer<CartState> => {
+  reducer: ActionReducer<fromRoot.AppState>
+): ActionReducer<fromRoot.AppState> => {
   return (state, action) => {
     if (isHydrateSuccess(action)) {
       return action.state;
