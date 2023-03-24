@@ -13,7 +13,10 @@ import { environment } from 'src/enviroments/enviromet';
 
 //store
 import { metaReducers, appReducers } from '../store/app.reducers';
+
 import { HydrationEffects } from '../store/hydration/hydration.effects';
+import { PropertyEffects } from './components/shop-list/state/property.effects';
+import { CartEffects } from './components/shop-cart/state/cart.effects';
 
 //components
 import { AppComponent } from './app.component';
@@ -30,7 +33,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
     CommonModule,
     StoreModule.forRoot(appReducers, { metaReducers }),
-    EffectsModule.forRoot([HydrationEffects]),
+    EffectsModule.forRoot([PropertyEffects, CartEffects, HydrationEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
