@@ -1,0 +1,29 @@
+<div>
+  <div *ngIf="!cart$">
+    <app-cart-plug></app-cart-plug>
+  </div>
+  <div *ngIf="cart$">
+    <app-price [sum]="carTotal$"></app-price>
+    <div class="row">
+      <div class="card shadow-lg">
+        <div style="position: absolute; right: 100px">
+          <p>List of items</p>
+        </div>
+        <div class="mb-lg-3 m-5">
+          <ul>
+            <li
+              class="list-group-item m-3"
+              *ngFor="let property of cart$ | async"
+            >
+              <app-property-cart-item
+                (onAddToCart)="addToCart($event)"
+                (onDeleteFromCart)="deleteFromCart($event)"
+                [cartProp]="property"
+              ></app-property-cart-item>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
